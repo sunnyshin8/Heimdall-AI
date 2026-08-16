@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 const fs = require('fs');
 const path = require('path');
@@ -37,11 +37,11 @@ if (command === 'scan') {
 
 function printHelp() {
   console.log(`
-Ã°Å¸â€ºÂ¡Ã¯Â¸Â  Heimdall AI CLI Simulator
+🛡️  Heimdall AI CLI Simulator
 =============================
 Usage:
-  node bin/Heimdall AI.js scan <path_to_file_or_folder>
-  node bin/Heimdall AI.js scan mock  (Runs a scan on a sample vulnerable file diff)
+  node bin/agentguard.js scan <path_to_file_or_folder>
+  node bin/agentguard.js scan mock  (Runs a scan on a sample vulnerable file diff)
 
 Options:
   help    Show this screen
@@ -53,7 +53,7 @@ async function runScan(target) {
   let title = 'Codebase Scan';
 
   if (!target || target === 'mock') {
-    console.log('Ã°Å¸â€œÂ No file path specified. Running scan with sample VULNERABLE code diff...');
+    console.log('📌 No file path specified. Running scan with sample VULNERABLE code diff...');
     diff = `
 diff --git a/config.ts b/config.ts
 index 123456..789101 100644
@@ -103,14 +103,14 @@ diff --git a/${path.basename(resolvedPath)} b/${path.basename(resolvedPath)}
 `;
       title = `Audit File: ${path.basename(resolvedPath)}`;
     } else {
-      console.log(`Ã°Å¸â€œâ€š Scanning directory: ${resolvedPath}...`);
+      console.log(`📂 Scanning directory: ${resolvedPath}...`);
       // Recursively aggregate a couple of source files
       const files = getFilesRecursively(resolvedPath);
       if (files.length === 0) {
         console.error('No readable text files found in the directory.');
         process.exit(1);
       }
-      
+
       diff = files.map(f => {
         const content = fs.readFileSync(f, 'utf8');
         const relative = path.relative(resolvedPath, f);
@@ -122,7 +122,7 @@ diff --git a/${relative} b/${relative}
 +${content.split('\n').join('\n+')}
 `;
       }).join('\n');
-      
+
       title = `Audit Directory: ${path.basename(resolvedPath)}`;
     }
   }
@@ -137,24 +137,24 @@ diff --git a/${relative} b/${relative}
     });
 
     console.log('\n==================================================');
-    console.log('Ã°Å¸â€ºÂ¡Ã¯Â¸Â  Heimdall AI Audit Complete');
+    console.log('🛡️  Heimdall AI Audit Complete');
     console.log('==================================================');
-    console.log(`Ã°Å¸â€œâ€š Repository: ${scanResult.repoName}`);
-    console.log(`Ã°Å¸â€œÅ’ PR Number:  #${scanResult.prNumber}`);
-    console.log(`Ã°Å¸â€œÅ  Status:     ${scanResult.status === 'Passed' ? 'Ã¢Å“â€¦ PASSED' : 'Ã¢ÂÅ’ FAILED'}`);
+    console.log(`📂 Repository: ${scanResult.repoName}`);
+    console.log(`📌 PR Number:  #${scanResult.prNumber}`);
+    console.log(`📊 Status:     ${scanResult.status === 'Passed' ? '✅ PASSED' : '❌ FAILED'}`);
     console.log('==================================================');
-    console.log('\nÃ°Å¸Â¤â€“ Agent Logs:');
-    
+    console.log('\n🤖 Agent Logs:');
+
     scanResult.logs.forEach(log => {
-      const statusIcon = log.status === 'Success' ? 'Ã°Å¸Å¸Â¢' : log.status === 'Warning' ? 'Ã°Å¸Å¸Â¡' : 'Ã°Å¸â€Â´';
+      const statusIcon = log.status === 'Success' ? '🟢' : log.status === 'Warning' ? '🟡' : '🔴';
       console.log(`\n[${statusIcon} ${log.agent_name}] [${log.severity}]`);
       console.log(`${log.log_message}`);
     });
-    
+
     console.log('\n==================================================');
     process.exit(scanResult.status === 'Passed' ? 0 : 1);
   } catch (err) {
-    console.error('Ã¢ÂÅ’ Audit execution failed:', err);
+    console.error('❌ Audit execution failed:', err);
     process.exit(1);
   }
 }
@@ -165,7 +165,7 @@ function getFilesRecursively(dir) {
   list.forEach(file => {
     // Ignore node_modules, .git, etc.
     if (file === 'node_modules' || file === '.git' || file === '.next' || file === 'dist') return;
-    
+
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
     if (stat && stat.isDirectory()) {

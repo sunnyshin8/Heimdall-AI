@@ -1,4 +1,4 @@
-﻿import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';
+import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';
 import * as db from '../db';
 
 export interface Matchup {
@@ -108,7 +108,7 @@ Respond ONLY in the following JSON format:
       match3 = { matchName: 'Match 3: Developer vs Compliance', playerA: 'Developer', playerB: 'Compliance Officer', ...parsed.match3 };
 
     } catch (err) {
-      console.warn('âš ï¸ AWS Bedrock debate generation failed. Falling back to deterministic local debate simulation.', err);
+      console.warn('⚠️ AWS Bedrock debate generation failed. Falling back to deterministic local debate simulation.', err);
       // Let it fall back to mock below
     }
   }
@@ -202,32 +202,32 @@ Respond ONLY in the following JSON format:
 
   // Format the debate transcript
   const debateLogs = `==================================================
-ðŸŸï¸  ROUND ROBIN MULTI-MODEL DEBATE ARENA
+🏟️  ROUND ROBIN MULTI-MODEL DEBATE ARENA
 ==================================================
 Vulnerability Triage: [${findings.join(', ')}]
-Tournament Verdict:   ${isFalsePositive ? 'ðŸŸ¢ FALSE POSITIVE (Exempted)' : 'ðŸ”´ TRUE POSITIVE (Action Required)'}
+Tournament Verdict:   ${isFalsePositive ? '🟢 FALSE POSITIVE (Exempted)' : '🔴 TRUE POSITIVE (Action Required)'}
 ==================================================
 
-âš”ï¸  MATCH 1: Auditor vs Developer
-- [ðŸ”´ Auditor]: ${match1.argumentsA}
-- [ðŸŸ¢ Developer]: ${match1.argumentsB}
-ðŸ† Winner: ${match1.winner} (${match1.verdict})
-ðŸ’¬ Reason: ${match1.reason}
+⚔️  MATCH 1: Auditor vs Developer
+- [🔴 Auditor]: ${match1.argumentsA}
+- [🟢 Developer]: ${match1.argumentsB}
+🏆 Winner: ${match1.winner} (${match1.verdict})
+💬 Reason: ${match1.reason}
 
-âš”ï¸  MATCH 2: Auditor vs Compliance
-- [ðŸ”´ Auditor]: ${match2.argumentsA}
-- [ðŸ”µ Compliance]: ${match2.argumentsB}
-ðŸ† Winner: ${match2.winner} (${match2.verdict})
-ðŸ’¬ Reason: ${match2.reason}
+⚔️  MATCH 2: Auditor vs Compliance
+- [🔴 Auditor]: ${match2.argumentsA}
+- [🔵 Compliance]: ${match2.argumentsB}
+🏆 Winner: ${match2.winner} (${match2.verdict})
+💬 Reason: ${match2.reason}
 
-âš”ï¸  MATCH 3: Developer vs Compliance
-- [ðŸŸ¢ Developer]: ${match3.argumentsA}
-- [ðŸ”µ Compliance]: ${match3.argumentsB}
-ðŸ† Winner: ${match3.winner} (${match3.verdict})
-ðŸ’¬ Reason: ${match3.reason}
+⚔️  MATCH 3: Developer vs Compliance
+- [🟢 Developer]: ${match3.argumentsA}
+- [🔵 Compliance]: ${match3.argumentsB}
+🏆 Winner: ${match3.winner} (${match3.verdict})
+💬 Reason: ${match3.reason}
 
 ==================================================
-ðŸ“Š TOURNAMENT LEADERBOARD:
+📊 TOURNAMENT LEADERBOARD:
 - Security Auditor:    ${auditorWins} Wins
 - Practical Developer:  ${developerWins} Wins
 - Compliance Officer:   ${complianceWins} Wins

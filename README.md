@@ -1,8 +1,8 @@
-﻿# Heimdall AI: Autonomous Multi-Model Code Security Gatekeeper
+# Heimdall AI: Autonomous Multi-Model Code Security Gatekeeper
 
 Heimdall AI is a polyglot, AI-powered security orchestrator designed to intercept, analyze, and automatically remediate vulnerabilities in Pull Requests before they are merged. It combines static analysis, dynamic API testing (DAST), vector similarity compliance checks, and a novel **Round Robin Multi-Model Debate** engine to eliminate false positives.
 
-## ðŸš€ Key Features
+## 🚀 Key Features
 
 *   **Round Robin AI Triage:** Instead of relying on a single LLM, Heimdall AI pits three distinct AI personas (Security Auditor, Practical Developer, and Compliance Officer) against each other in a debate to determine if a finding is a True Positive or False Positive.
 *   **Polyglot Microservices:** Built with the right tool for the job.
@@ -15,7 +15,7 @@ Heimdall AI is a polyglot, AI-powered security orchestrator designed to intercep
 *   **LLM Agnostic Gateway:** Seamlessly swap between AWS Bedrock, OpenAI, Anthropic, or local Ollama models without modifying the core TypeScript agents.
 *   **Auto-Remediation:** Automatically generates `git diff` patches for True Positives and verifies them via a CI dry-run syntax check before proposing them to the developer.
 
-## ðŸ—ï¸ Architecture Overview
+## 🏗️ Architecture Overview
 
 The ecosystem consists of several interconnected components running simultaneously:
 1.  **Frontend/Orchestrator (`:3000`)**: Next.js 14 App Router application handling the UI, PR Webhooks, and executing the Agent pipeline.
@@ -26,7 +26,7 @@ The ecosystem consists of several interconnected components running simultaneous
 
 *(Detailed architecture diagrams are located in the `/architecture/` folder, which is currently ignored by git).*
 
-## ðŸ› ï¸ Installation & Setup
+## 🛠️ Installation & Setup
 
 ### Prerequisites
 *   Node.js (v18+)
@@ -76,11 +76,11 @@ Heimdall AI includes a unified launcher that spins up all microservices:
 npm run dev:all
 ```
 
-## ðŸŽ® Usage Guide
+## 🎮 Usage Guide
 
 1.  **Dashboard Access:** Navigate to `http://localhost:3000`. Log in using the default credentials (`admin` / `admin`).
 2.  **Scanning a PR:** In the Security Workspaces tab, paste a real GitHub PR URL (e.g., `https://github.com/owner/repo/pull/123`) and click "Scan".
 3.  **API Registry:** Navigate to the API Registry tab to register new endpoints. The Go Monitor will automatically begin fuzzing and scoring them in the background.
 
-## ðŸ¤ Contributing
+## 🤝 Contributing
 Contributions are welcome! Please ensure you run tests and verify the architecture diagram flows in the `architecture` folder before submitting major PRs.
