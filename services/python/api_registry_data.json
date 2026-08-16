@@ -1,0 +1,235 @@
+{
+  "apis": {
+    "5b1a61ee": {
+      "name": "User Auth API",
+      "url": "https://auth.myapp.com/v2",
+      "owner": "platform-team",
+      "team": "infra",
+      "auth_type": "bearer",
+      "cors_origin": "https://myapp.com",
+      "rate_limit": "1000/min",
+      "metadata": {
+        "version": "2.1"
+      },
+      "id": "5b1a61ee",
+      "description": "",
+      "status": "active",
+      "compliance_score": 100,
+      "risk_level": "Low",
+      "checks_passed": [
+        "Authentication required",
+        "No wildcard CORS origin",
+        "HTTPS endpoint",
+        "Rate limiting declared",
+        "API versioning present",
+        "Owner/team assigned"
+      ],
+      "checks_failed": [],
+      "created_at": "2026-08-16T13:29:06.387219+00:00",
+      "updated_at": "2026-08-16T13:29:06.387219+00:00",
+      "last_scanned_at": "2026-08-16T13:29:06.387219+00:00"
+    },
+    "e1a930dc": {
+      "name": "Payment Gateway",
+      "url": "https://pay.myapp.com/v1",
+      "owner": "payments-team",
+      "team": "fintech",
+      "auth_type": "api_key",
+      "cors_origin": "https://myapp.com",
+      "rate_limit": "500/min",
+      "metadata": {
+        "version": "1.5"
+      },
+      "id": "e1a930dc",
+      "description": "",
+      "status": "active",
+      "compliance_score": 100,
+      "risk_level": "Low",
+      "checks_passed": [
+        "Authentication required",
+        "No wildcard CORS origin",
+        "HTTPS endpoint",
+        "Rate limiting declared",
+        "API versioning present",
+        "Owner/team assigned"
+      ],
+      "checks_failed": [],
+      "created_at": "2026-08-16T13:29:06.387268+00:00",
+      "updated_at": "2026-08-16T13:29:06.387268+00:00",
+      "last_scanned_at": "2026-08-16T13:29:06.387268+00:00"
+    },
+    "9a78dfa4": {
+      "name": "Legacy Reports API",
+      "url": "http://reports.internal/api",
+      "owner": "",
+      "team": "",
+      "auth_type": "none",
+      "cors_origin": "*",
+      "rate_limit": "",
+      "metadata": {},
+      "id": "9a78dfa4",
+      "description": "",
+      "status": "active",
+      "compliance_score": 0,
+      "risk_level": "High",
+      "checks_passed": [],
+      "checks_failed": [
+        "Authentication required",
+        "No wildcard CORS origin",
+        "HTTPS endpoint",
+        "Rate limiting declared",
+        "API versioning present",
+        "Owner/team assigned"
+      ],
+      "created_at": "2026-08-16T13:29:06.387290+00:00",
+      "updated_at": "2026-08-16T13:29:06.387290+00:00",
+      "last_scanned_at": "2026-08-16T13:29:06.387290+00:00"
+    },
+    "ce396d7b": {
+      "name": "Notification Service",
+      "url": "https://notify.myapp.com/v3",
+      "owner": "comms-team",
+      "team": "product",
+      "auth_type": "bearer",
+      "cors_origin": "https://myapp.com",
+      "rate_limit": "5000/min",
+      "metadata": {
+        "version": "3.0"
+      },
+      "id": "ce396d7b",
+      "description": "",
+      "status": "active",
+      "compliance_score": 100,
+      "risk_level": "Low",
+      "checks_passed": [
+        "Authentication required",
+        "No wildcard CORS origin",
+        "HTTPS endpoint",
+        "Rate limiting declared",
+        "API versioning present",
+        "Owner/team assigned"
+      ],
+      "checks_failed": [],
+      "created_at": "2026-08-16T13:29:06.387310+00:00",
+      "updated_at": "2026-08-16T13:29:06.387310+00:00",
+      "last_scanned_at": "2026-08-16T13:29:06.387310+00:00"
+    },
+    "04cd055e": {
+      "id": "04cd055e",
+      "name": "Billing Service (Dynamic)",
+      "url": "https://api.myapp.com/billing",
+      "description": "",
+      "owner": "finance-team",
+      "team": "",
+      "auth_type": "api_key",
+      "cors_origin": "https://",
+      "rate_limit": "",
+      "environment": "production",
+      "status": "active",
+      "compliance_score": 75,
+      "risk_level": "Medium",
+      "checks_passed": [
+        "Authentication required",
+        "No wildcard CORS origin",
+        "HTTPS endpoint",
+        "Owner/team assigned"
+      ],
+      "checks_failed": [
+        "Rate limiting declared",
+        "API versioning present"
+      ],
+      "metadata": {},
+      "created_at": "2026-08-16T13:30:44.152848+00:00",
+      "updated_at": "2026-08-16T13:30:44.152848+00:00",
+      "last_scanned_at": "2026-08-16T13:30:44.152848+00:00"
+    }
+  },
+  "scan_history": {
+    "5b1a61ee": [
+      {
+        "timestamp": "2026-08-16T13:29:06.387219+00:00",
+        "score": 100,
+        "risk": "Low",
+        "passed": [
+          "Authentication required",
+          "No wildcard CORS origin",
+          "HTTPS endpoint",
+          "Rate limiting declared",
+          "API versioning present",
+          "Owner/team assigned"
+        ],
+        "failed": [],
+        "trigger": "seed"
+      }
+    ],
+    "e1a930dc": [
+      {
+        "timestamp": "2026-08-16T13:29:06.387268+00:00",
+        "score": 100,
+        "risk": "Low",
+        "passed": [
+          "Authentication required",
+          "No wildcard CORS origin",
+          "HTTPS endpoint",
+          "Rate limiting declared",
+          "API versioning present",
+          "Owner/team assigned"
+        ],
+        "failed": [],
+        "trigger": "seed"
+      }
+    ],
+    "9a78dfa4": [
+      {
+        "timestamp": "2026-08-16T13:29:06.387290+00:00",
+        "score": 0,
+        "risk": "High",
+        "passed": [],
+        "failed": [
+          "Authentication required",
+          "No wildcard CORS origin",
+          "HTTPS endpoint",
+          "Rate limiting declared",
+          "API versioning present",
+          "Owner/team assigned"
+        ],
+        "trigger": "seed"
+      }
+    ],
+    "ce396d7b": [
+      {
+        "timestamp": "2026-08-16T13:29:06.387310+00:00",
+        "score": 100,
+        "risk": "Low",
+        "passed": [
+          "Authentication required",
+          "No wildcard CORS origin",
+          "HTTPS endpoint",
+          "Rate limiting declared",
+          "API versioning present",
+          "Owner/team assigned"
+        ],
+        "failed": [],
+        "trigger": "seed"
+      }
+    ],
+    "04cd055e": [
+      {
+        "timestamp": "2026-08-16T13:30:44.152848+00:00",
+        "score": 75,
+        "risk": "Medium",
+        "passed": [
+          "Authentication required",
+          "No wildcard CORS origin",
+          "HTTPS endpoint",
+          "Owner/team assigned"
+        ],
+        "failed": [
+          "Rate limiting declared",
+          "API versioning present"
+        ],
+        "trigger": "registration"
+      }
+    ]
+  }
+}
