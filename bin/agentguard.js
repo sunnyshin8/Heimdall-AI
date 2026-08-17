@@ -177,5 +177,5 @@ function getFilesRecursively(dir) {
       }
     }
   });
-  return results.slice(0, 10); // Cap at 10 files to avoid context blowout
+  return results.slice(0, 10);
 }

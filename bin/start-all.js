@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Heimdall AI: Unified Dev Launcher
  * Starts Next.js, Python Flask, and prints Go instructions in one terminal.

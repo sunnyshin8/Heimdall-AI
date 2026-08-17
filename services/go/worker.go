@@ -1,4 +1,4 @@
-﻿package main
+package main
 
 import (
 	"database/sql"
@@ -22,7 +22,7 @@ type PR struct {
 func main() {
 	connectionString := os.Getenv("DATABASE_URL")
 	if connectionString == "" {
-		fmt.Println("âš ï¸  DATABASE_URL is empty. Go worker running in SIMULATION POLLING mode.")
+		fmt.Println("⚠️  DATABASE_URL is empty. Go worker running in SIMULATION POLLING mode.")
 		runSimulationLoop()
 		return
 	}
@@ -39,7 +39,7 @@ func main() {
 		log.Fatalf("âŒ Database unreachable: %v", err)
 	}
 
-	fmt.Println("ðŸš€ Heimdall AI Go Background Queue Worker listening on CockroachDB transaction feeds...")
+	fmt.Println("🚀 Heimdall AI Go Background Queue Worker listening on CockroachDB transaction feeds...")
 
 	// Polling loop
 	for {
@@ -65,7 +65,7 @@ func processPendingQueue(db *sql.Model) {
 			continue
 		}
 
-		fmt.Printf("ðŸ“¥ [Go Worker] Dequeued PR #%d (%s) for high-performance security compilation...\n", pr.Number, pr.RepoName)
+		fmt.Printf("📥 [Go Worker] Dequeued PR #%d (%s) for high-performance security compilation...\n", pr.Number, pr.RepoName)
 		
 		// In a production Go service, we would trigger sub-agents here.
 		// For the microservice split, we log the dequeue event and update status.
@@ -89,9 +89,9 @@ func processPendingQueue(db *sql.Model) {
 }
 
 func runSimulationLoop() {
-	fmt.Println("ðŸš€ Go worker initialized. Emulating high-concurrency event consumer loop...")
+	fmt.Println("🚀 Go worker initialized. Emulating high-concurrency event consumer loop...")
 	for i := 1; ; i++ {
 		time.Sleep(10 * time.Second)
-		fmt.Printf("ðŸ“¡ [Go Worker] Listening... Checked queue at %s (0 jobs pending)\n", time.Now().Format("15:04:05"))
+		fmt.Printf("📻 [Go Worker] Listening... Checked queue at %s (0 jobs pending)\n", time.Now().Format("15:04:05"))
 	}
 }

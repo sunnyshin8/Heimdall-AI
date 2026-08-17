@@ -297,7 +297,7 @@ export default function Home() {
               <div className="panel-header"><span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Globe size={20} />Registered APIs</span><span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{apis.length} total</span></div>
               {loadingApis ? (<div className="empty-state"><RefreshCw size={32} style={{ animation: 'spin 1s linear infinite' }} /><p style={{ marginTop: '1rem' }}>Loading API registry...</p></div>)
                 : apis.length === 0 ? (<div className="empty-state"><Globe size={48} style={{ color: '#cbd5e1' }} /><p>No APIs registered yet.</p></div>)
-                  : (<div className="pr-list">{apis.map(api => (<div key={api.id} className={`pr-item ${selectedApi?.id === api.id ? 'active' : ''}`} onClick={() => setSelectedApi(api)}><div style={{ flex: 1, minWidth: 0, paddingRight: '0.75rem' }}><div className="pr-title" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{api.name}</div><div className="pr-meta" style={{ marginTop: '0.2rem' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}><Lock size={11} />{api.auth_type}</span><span>â€¢</span><span>{api.environment}</span>{api.team && <><span>â€¢</span><span>{api.team}</span></>}</div></div><div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.3rem', flexShrink: 0 }}><span style={{ padding: '0.2rem 0.6rem', borderRadius: '10px', background: riskBg(api.risk_level), color: riskColor(api.risk_level), fontSize: '0.72rem', fontWeight: 800 }}>{api.risk_level} Risk</span><span style={{ fontSize: '0.75rem', fontWeight: 700, color: riskColor(api.risk_level) }}>{api.compliance_score}%</span></div></div>))}</div>)}
+                  : (<div className="pr-list">{apis.map(api => (<div key={api.id} className={`pr-item ${selectedApi?.id === api.id ? 'active' : ''}`} onClick={() => setSelectedApi(api)}><div style={{ flex: 1, minWidth: 0, paddingRight: '0.75rem' }}><div className="pr-title" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{api.name}</div><div className="pr-meta" style={{ marginTop: '0.2rem' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}><Lock size={11} />{api.auth_type}</span><span>•</span><span>{api.environment}</span>{api.team && <><span>•</span><span>{api.team}</span></>}</div></div><div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.3rem', flexShrink: 0 }}><span style={{ padding: '0.2rem 0.6rem', borderRadius: '10px', background: riskBg(api.risk_level), color: riskColor(api.risk_level), fontSize: '0.72rem', fontWeight: 800 }}>{api.risk_level} Risk</span><span style={{ fontSize: '0.75rem', fontWeight: 700, color: riskColor(api.risk_level) }}>{api.compliance_score}%</span></div></div>))}</div>)}
             </div>
             <div className="panel-card clay-card">
               <div className="panel-header"><span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Activity size={20} />API Security Detail</span></div>
@@ -341,10 +341,10 @@ export default function Home() {
             <h2 style={{ fontSize: '1.9rem', fontWeight: 900, color: '#1e293b', margin: '1rem 0 1.25rem', lineHeight: 1.2 }}>Not just another scanner.<br /><span style={{ background: 'linear-gradient(135deg,#e8468a,#9b5de5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>A thinking security layer.</span></h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: '1rem' }}>
               {[
-                { icon: 'ðŸ§ ', title: 'Multimodel Consensus', desc: 'Three AI personas debate every finding. No single model decides eliminating false positives that waste engineer time.' },
-                { icon: 'ðŸ—„ï¸', title: 'Persistent Vector Memory', desc: 'CockroachDB stores embeddings + logs across regions. Agents resume and correlate findings even after crashes.' },
-                { icon: 'ðŸŒ', title: 'API Security CRM', desc: 'First security tool with a built-in API Registry. Track every endpoint, score compliance, catch regressions before they ship.' },
-                { icon: 'ðŸ”·', title: 'Polyglot by Design', desc: 'Python for AI, Go for speed, Java for AST, Shell for git hooks. Each service in the right language for its job.' },
+                { icon: '🧠', title: 'Multimodel Consensus', desc: 'Three AI personas debate every finding. No single model decides eliminating false positives that waste engineer time.' },
+                { icon: '🗄️', title: 'Persistent Vector Memory', desc: 'CockroachDB stores embeddings + logs across regions. Agents resume and correlate findings even after crashes.' },
+                { icon: '🌐', title: 'API Security CRM', desc: 'First security tool with a built-in API Registry. Track every endpoint, score compliance, catch regressions before they ship.' },
+                { icon: '🔷', title: 'Polyglot by Design', desc: 'Python for AI, Go for speed, Java for AST, Shell for git hooks. Each service in the right language for its job.' },
               ].map(item => (
                 <div key={item.title} style={{ padding: '1.25rem', borderRadius: '16px', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(8px)', border: '1.5px solid rgba(255,255,255,0.8)' }}>
                   <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{item.icon}</div>
@@ -360,13 +360,13 @@ export default function Home() {
             <p style={{ color: '#64748b', fontSize: '0.9rem', marginBottom: '2rem' }}>Every PR travels through a 7-stage autonomous audit in under 30 seconds.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(130px,1fr))', gap: '0.75rem' }}>
               {[
-                { step: '01', icon: 'ðŸ“¥', label: 'PR Webhook', desc: 'GitHub sends HMAC-signed payload to /api/scan', color: '#ecf3fe', border: '#2f69d3' },
-                { step: '02', icon: 'ðŸ”', label: 'Secret Scan', desc: 'Regex finds API keys, tokens and connection strings', color: '#fdf2f2', border: '#c93b3b' },
-                { step: '03', icon: 'ðŸ§¬', label: 'Vector Embed', desc: 'Python calls Titan Embeddings, cosine query on CockroachDB', color: '#fef8eb', border: '#c07d17' },
-                { step: '04', icon: 'ðŸ“‹', label: 'Compliance', desc: '5 policy rules checked via pgvector similarity', color: '#f8f0ff', border: '#9b5de5' },
-                { step: '05', icon: 'âš”ï¸', label: 'Round Robin', desc: '3 AI personas debate: Auditor vs Dev vs Compliance', color: '#fce8f3', border: '#e8468a' },
-                { step: '06', icon: 'ðŸ› ï¸', label: 'Remediation', desc: 'If True Positive: Claude generates git diff patch', color: '#ebf9f3', border: '#1d885d' },
-                { step: '07', icon: 'ðŸ’¾', label: 'Persist', desc: 'All results and embeddings stored in CockroachDB', color: '#f0fdf4', border: '#16a34a' },
+                { step: '01', icon: '📥', label: 'PR Webhook', desc: 'GitHub sends HMAC-signed payload to /api/scan', color: '#ecf3fe', border: '#2f69d3' },
+                { step: '02', icon: '🔍', label: 'Secret Scan', desc: 'Regex finds API keys, tokens and connection strings', color: '#fdf2f2', border: '#c93b3b' },
+                { step: '03', icon: '🧬', label: 'Vector Embed', desc: 'Python calls Titan Embeddings, cosine query on CockroachDB', color: '#fef8eb', border: '#c07d17' },
+                { step: '04', icon: '📋', label: 'Compliance', desc: '5 policy rules checked via pgvector similarity', color: '#f8f0ff', border: '#9b5de5' },
+                { step: '05', icon: '⚔️', label: 'Round Robin', desc: '3 AI personas debate: Auditor vs Dev vs Compliance', color: '#fce8f3', border: '#e8468a' },
+                { step: '06', icon: '🛠️', label: 'Remediation', desc: 'If True Positive: Claude generates git diff patch', color: '#ebf9f3', border: '#1d885d' },
+                { step: '07', icon: '💾', label: 'Persist', desc: 'All results and embeddings stored in CockroachDB', color: '#f0fdf4', border: '#16a34a' },
               ].map(s => (
                 <div key={s.step} style={{ padding: '1.1rem 0.85rem', borderRadius: '14px', background: s.color, border: `2px solid ${s.border}33`, boxSizing: 'border-box' as const }}>
                   <div style={{ fontSize: '0.6rem', fontWeight: 900, color: s.border, letterSpacing: '0.05em', marginBottom: '0.35rem' }}>STEP {s.step}</div>
@@ -383,10 +383,10 @@ export default function Home() {
             <p style={{ color: '#64748b', fontSize: '0.9rem', marginBottom: '2rem' }}>A unified inventory and dynamic health monitor for your entire API portfolio.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: '1rem' }}>
               {[
-                { step: '01', icon: 'ðŸ“', label: 'Registration', desc: 'Developers register API endpoints and metadata via the CRM interface.', color: '#f8f0ff', border: '#9b5de5' },
-                { step: '02', icon: 'ðŸ§®', label: 'Compliance Scoring', desc: 'Python service calculates an overall security posture score based on Auth, CORS, and limits.', color: '#ecf3fe', border: '#2f69d3' },
-                { step: '03', icon: 'ðŸŽ¯', label: 'DAST Fuzzing', desc: 'Go monitor proactively tests endpoints every 30s with SQL injection payloads.', color: '#fdf2f2', border: '#c93b3b' },
-                { step: '04', icon: 'ðŸ“Š', label: 'Live Posture', desc: 'CockroachDB syncs realtime stats back to the dashboard, flagging vulnerable endpoints.', color: '#f0fdf4', border: '#16a34a' },
+                { step: '01', icon: '📝', label: 'Registration', desc: 'Developers register API endpoints and metadata via the CRM interface.', color: '#f8f0ff', border: '#9b5de5' },
+                { step: '02', icon: '🧮', label: 'Compliance Scoring', desc: 'Python service calculates an overall security posture score based on Auth, CORS, and limits.', color: '#ecf3fe', border: '#2f69d3' },
+                { step: '03', icon: '🎯', label: 'DAST Fuzzing', desc: 'Go monitor proactively tests endpoints every 30s with SQL injection payloads.', color: '#fdf2f2', border: '#c93b3b' },
+                { step: '04', icon: '📊', label: 'Live Posture', desc: 'CockroachDB syncs realtime stats back to the dashboard, flagging vulnerable endpoints.', color: '#f0fdf4', border: '#16a34a' },
               ].map(s => (
                 <div key={s.step} style={{ padding: '1.25rem', borderRadius: '14px', background: s.color, border: `2px solid ${s.border}33`, boxSizing: 'border-box' as const }}>
                   <div style={{ fontSize: '0.65rem', fontWeight: 900, color: s.border, letterSpacing: '0.05em', marginBottom: '0.5rem' }}>STEP {s.step}</div>
@@ -403,11 +403,11 @@ export default function Home() {
             <p style={{ color: '#64748b', fontSize: '0.9rem', marginBottom: '2rem' }}>Each language chosen for what it does best. No single-runtime lock-in.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))', gap: '1.25rem' }}>
               {[
-                { lang: 'TypeScript', color: '#3178c6', bg: '#eff6ff', icon: 'ðŸ”·', count: 7, services: ['Orchestrator master pipeline', 'SecretScanner regex + entropy', 'ComplianceAgent RAG query runner', 'RemediationAgent Bedrock patcher', 'RoundRobinValidator debate engine', 'Validator AST syntax checker', 'Embeddings client Python IPC'] },
-                { lang: 'Python (Flask)', color: '#f59e0b', bg: '#fffbeb', icon: 'ðŸ', count: 2, services: ['Embeddings API :5001 Titan via Bedrock', 'API Registry CRM :5002 CRUD, compliance scoring, ownership tracking, scan history'] },
-                { lang: 'Go', color: '#00add8', bg: '#f0fdff', icon: 'ðŸ¹', count: 2, services: ['DB Queue Worker CockroachDB Pending PRs at high concurrency', 'API Health Monitor :5003 probes endpoints, checks HTTPS/HSTS/XFrame headers every 30s'] },
-                { lang: 'Java', color: '#e76f00', bg: '#fff7ed', icon: 'â˜•', count: 1, services: ['ASTParser class-level compliance: raw SQL concat, wildcard CORS, MD5/SHA1 detection'] },
-                { lang: 'Shell', color: '#334155', bg: '#f8fafc', icon: 'ðŸ’»', count: 1, services: ['pre-commit.sh git hook that blocks unsafe staged commits before push'] },
+                { lang: 'TypeScript', color: '#3178c6', bg: '#eff6ff', icon: '🔷', count: 7, services: ['Orchestrator master pipeline', 'SecretScanner regex + entropy', 'ComplianceAgent RAG query runner', 'RemediationAgent Bedrock patcher', 'RoundRobinValidator debate engine', 'Validator AST syntax checker', 'Embeddings client Python IPC'] },
+                { lang: 'Python (Flask)', color: '#f59e0b', bg: '#fffbeb', icon: '🐍', count: 2, services: ['Embeddings API :5001 Titan via Bedrock', 'API Registry CRM :5002 CRUD, compliance scoring, ownership tracking, scan history'] },
+                { lang: 'Go', color: '#00add8', bg: '#f0fdff', icon: '🦅', count: 2, services: ['DB Queue Worker CockroachDB Pending PRs at high concurrency', 'API Health Monitor :5003 probes endpoints, checks HTTPS/HSTS/XFrame headers every 30s'] },
+                { lang: 'Java', color: '#e76f00', bg: '#fff7ed', icon: '☕', count: 1, services: ['ASTParser class-level compliance: raw SQL concat, wildcard CORS, MD5/SHA1 detection'] },
+                { lang: 'Shell', color: '#334155', bg: '#f8fafc', icon: '💻', count: 1, services: ['pre-commit.sh git hook that blocks unsafe staged commits before push'] },
               ].map(r => (
                 <div key={r.lang} style={{ borderRadius: '20px', border: `2px solid ${r.color}22`, background: r.bg, padding: '1.25rem', overflow: 'hidden' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.85rem' }}>
@@ -426,9 +426,9 @@ export default function Home() {
             <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '2rem' }}>The first ML-powered false-positive triage system for code security findings.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
               {[
-                { p: 'ðŸ”´ Security Auditor', r: 'Always suspicious. Defaults to flagging.', b: 'rgba(201,59,59,0.2)', bd: 'rgba(201,59,59,0.3)' },
-                { p: 'ðŸŸ¢ Practical Developer', r: 'Context-aware. Considers code intent.', b: 'rgba(29,136,93,0.2)', bd: 'rgba(29,136,93,0.3)' },
-                { p: 'ðŸ”µ Compliance Officer', r: 'Policy-driven. Checks rules literally.', b: 'rgba(47,105,211,0.2)', bd: 'rgba(47,105,211,0.3)' },
+                { p: '🔴 Security Auditor', r: 'Always suspicious. Defaults to flagging.', b: 'rgba(201,59,59,0.2)', bd: 'rgba(201,59,59,0.3)' },
+                { p: '🟢 Practical Developer', r: 'Context-aware. Considers code intent.', b: 'rgba(29,136,93,0.2)', bd: 'rgba(29,136,93,0.3)' },
+                { p: '🔵 Compliance Officer', r: 'Policy-driven. Checks rules literally.', b: 'rgba(47,105,211,0.2)', bd: 'rgba(47,105,211,0.3)' },
               ].map(item => (<div key={item.p} style={{ padding: '1.1rem', borderRadius: '14px', background: item.b, border: `1.5px solid ${item.bd}` }}><div style={{ fontWeight: 800, fontSize: '0.9rem', color: '#fff', marginBottom: '0.35rem' }}>{item.p}</div><div style={{ fontSize: '0.78rem', color: '#94a3b8' }}>{item.r}</div></div>))}
             </div>
             <div style={{ fontSize: '0.85rem', color: '#94a3b8', lineHeight: 1.8 }}><strong style={{ color: '#fff' }}>How voting works: </strong>3 matchups run in sequence. Each produces a winner by argument scoring. Auditor wins 2+ = <strong style={{ color: '#f87171' }}>True Positive</strong>, remediation dispatched. Developer or Compliance wins majority = <strong style={{ color: '#4ade80' }}>False Positive (Exempted)</strong>, PR auto-approved.</div>

@@ -1,19 +1,19 @@
-﻿#!/bin/sh
+#!/bin/sh
 
 # Heimdall AI Git Pre-Commit Hook Integration
 # Intercepts commit stages and audits changes locally before they hit the repository.
 
-echo "ðŸ›¡ï¸  [Heimdall AI Hook] Intercepting commit... Running compliance checks..."
+echo "🛡️  [Heimdall AI Hook] Intercepting commit... Running compliance checks..."
 
 # Retrieve list of modified files in the staging area
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx|json|java|go)$')
 
 if [ -z "$STAGED_FILES" ]; then
-    echo "ðŸŸ¢ [Heimdall AI Hook] No application code files modified in staging. Allowing commit."
+    echo "🟢 [Heimdall AI Hook] No application code files modified in staging. Allowing commit."
     exit 0
 fi
 
-echo "ðŸ” Staged files to audit:"
+echo "🔍  Staged files to audit:"
 echo "$STAGED_FILES"
 
 # Trigger local Heimdall AI scanner
@@ -28,5 +28,5 @@ if [ $SCAN_EXIT_CODE -ne 0 ]; then
     exit 1
 fi
 
-echo "\nðŸŸ¢ [Heimdall AI Hook] Scan passed or exempted by Multi-Model Triage. Committing changes.\n"
+echo "\n🟢 [Heimdall AI Hook] Scan passed or exempted by Multi-Model Triage. Committing changes.\n"
 exit 0

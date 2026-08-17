@@ -1,4 +1,4 @@
-﻿import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';
+import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';
 import * as db from '../db';
 import { AgentResult } from './secretScanner';
 import { execSync } from 'child_process';
@@ -58,7 +58,7 @@ Respond ONLY in the following JSON format:
       const parsed = JSON.parse(responseText.substring(responseText.indexOf('{'), responseText.lastIndexOf('}') + 1));
       suggestedFix = `PROPOSED FIX:\n${parsed.codeFix}\n\nREASON: ${parsed.explanation}`;
     } catch (err) {
-      console.warn('âš ï¸ Bedrock remediation agent failed. Generating static mock correction text instead.', err);
+      console.warn('⚠️ Bedrock remediation agent failed. Generating static mock correction text instead.', err);
     }
   }
 
@@ -119,10 +119,10 @@ ode -c  + tmpFile, { stdio: 'pipe' });
   let result: AgentResult;
 
   if (!validation.isValid) {
-    console.warn(`âš ï¸ [RemediationAgent] AI suggestion rejected by local validator: ${validation.errors.join(', ')}`);
+    console.warn(`⚠️ [RemediationAgent] AI suggestion rejected by local validator: ${validation.errors.join(', ')}`);
     result = {
       status: 'Failure',
-      logMessage: `âŒ AI REMEDIATION REJECTED (Hallucination/Syntax Check Failed):\n${validation.errors.map((e: string) => `- ${e}`).join('\n')}\n\n---\nRaw Output Received:\n${suggestedFix}`,
+      logMessage: `❌ AI REMEDIATION REJECTED (Hallucination/Syntax Check Failed):\n${validation.errors.map((e: string) => `- ${e}`).join('\n')}\n\n---\nRaw Output Received:\n${suggestedFix}`,
       severity: 'High'
     };
   } else {

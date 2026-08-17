@@ -1,17 +1,17 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Heimdall AI: API Registry & CRM Service (Python Flask)
 ====================================================
 Acts as a CRM for registered API endpoints.
-State is stored in CockroachDB (psycopg2).
+State is stored in CockroachDB (pg8000).
 """
 
 import os
-import uuid
-import psycopg2
-from psycopg2.extras import RealDictCursor
+import ssl
 from datetime import datetime, timezone
+from urllib.parse import urlparse
 from flask import Flask, request, jsonify
+import pg8000.dbapi
 
 app = Flask(__name__)
 DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -19,7 +19,27 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 def get_db():
     if not DATABASE_URL:
         raise ValueError("DATABASE_URL not set")
-    return psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
+    parsed = urlparse(DATABASE_URL)
+    ssl_ctx = ssl.create_default_context() if "sslmode=verify-full" in DATABASE_URL else None
+    return pg8000.dbapi.connect(
+        user=parsed.username,
+        password=parsed.password,
+        host=parsed.hostname,
+        port=parsed.port or 26257,
+        database=parsed.path.lstrip('/'),
+        ssl_context=ssl_ctx
+    )
+
+def dict_fetchall(cursor):
+    columns = [col[0] for col in cursor.description]
+    return [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+def dict_fetchone(cursor):
+    row = cursor.fetchone()
+    if row:
+        columns = [col[0] for col in cursor.description]
+        return dict(zip(columns, row))
+    return None
 
 SECURITY_CHECKS = [
     {"id": "has_auth",      "label": "Authentication required",    "weight": 25},
@@ -64,8 +84,7 @@ def list_apis():
         with get_db() as conn:
             with conn.cursor() as cur:
                 cur.execute("SELECT * FROM apis ORDER BY compliance_score DESC")
-                apis = cur.fetchall()
-                # psycopg2 returns datetime objects, convert them to iso strings for JSON serialization
+                apis = dict_fetchall(cur)
                 for a in apis:
                     for k, v in a.items():
                         if isinstance(v, datetime):
@@ -99,12 +118,14 @@ def register_api():
                     data.get("environment", "production"), "active", score, risk, passed, failed,
                     now, now, now
                 ))
-                record = cur.fetchone()
+                record = dict_fetchone(cur)
                 
                 cur.execute("""
                     INSERT INTO api_scan_history (api_id, score, risk, passed, failed, trigger_type, scanned_at)
                     VALUES (%s, %s, %s, %s, %s, %s, %s)
                 """, (record["id"], score, risk, passed, failed, "registration", now))
+                
+                conn.commit()
                 
                 for k, v in record.items():
                     if isinstance(v, datetime):
@@ -119,7 +140,7 @@ def stats():
         with get_db() as conn:
             with conn.cursor() as cur:
                 cur.execute("SELECT risk_level, compliance_score FROM apis")
-                apis = cur.fetchall()
+                apis = dict_fetchall(cur)
                 total = len(apis)
                 high_risk = sum(1 for a in apis if a["risk_level"] == "High")
                 medium_risk = sum(1 for a in apis if a["risk_level"] == "Medium")

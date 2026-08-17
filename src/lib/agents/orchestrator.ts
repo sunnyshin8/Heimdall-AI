@@ -1,4 +1,4 @@
-﻿import * as db from '../db';
+import * as db from '../db';
 import { scanSecrets } from './secretScanner';
 import { scanCompliance } from './complianceAgent';
 import { generateRemediation } from './remediationAgent';
@@ -15,7 +15,7 @@ export interface RunScanOptions {
 export async function executeAuditPipeline(options: RunScanOptions) {
   const { prNumber, repoName, author, title, diff } = options;
 
-  console.log(`ðŸš€ Starting Heimdall AI Orchestrator for PR #${prNumber} in ${repoName}...`);
+  console.log(`🚀 Starting Heimdall AI Orchestrator for PR #${prNumber} in ${repoName}...`);
 
   // 1. Create or insert PR transaction record in CockroachDB
   const prInsertion = await db.query(
@@ -76,7 +76,7 @@ export async function executeAuditPipeline(options: RunScanOptions) {
     [finalStatus, prId]
   );
 
-  console.log(`ðŸ Heimdall AI audit complete for PR #${prNumber}. Final Status: ${finalStatus}`);
+  console.log(`🏛️ Heimdall AI audit complete for PR #${prNumber}. Final Status: ${finalStatus}`);
 
   // 5. Query and return all audit logs for this run
   const logsResult = await db.query(

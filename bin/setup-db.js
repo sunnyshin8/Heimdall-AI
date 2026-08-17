@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Heimdall AI: Automated CockroachDB Setup Script
  * Usage: node bin/setup-db.js   OR   npm run db:setup
