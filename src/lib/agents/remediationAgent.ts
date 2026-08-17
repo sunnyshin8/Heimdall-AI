@@ -98,12 +98,11 @@ Respond ONLY in the following JSON format:
       if (codeMatch && codeMatch[1]) {
         const scratchDir = path.join(process.cwd(), 'scratch');
         if (!fs.existsSync(scratchDir)) fs.mkdirSync(scratchDir);
-        const tmpFile = path.join(scratchDir, patch_.js);
+        const tmpFile = path.join(scratchDir, `patch_${Date.now()}.js`);
         fs.writeFileSync(tmpFile, codeMatch[1]);
         
         try {
-          execSync(
-ode -c  + tmpFile, { stdio: 'pipe' });
+          execSync(`node -c ${tmpFile}`, { stdio: 'pipe' });
         } catch (e: any) {
           validation.isValid = false;
           validation.errors.push("CI Dry Run Syntax Error: " + (e.stderr?.toString() || e.message));

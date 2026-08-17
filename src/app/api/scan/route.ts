@@ -1,4 +1,4 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { createHmac, timingSafeEqual } from 'crypto';
 import { executeAuditPipeline } from '@/lib/agents/orchestrator';
 
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
           diff = await diffRes.text();
           
           // Optional: Fetch PR details (title/author) via GitHub API if we had a PAT, but we'll fallback for MVP
-          title = title || Audit for  + prUrl;
+          title = title || `Audit for ${prUrl}`;
           author = author || 'github-user';
         } else {
           throw new Error('Invalid GitHub PR URL format.');
