@@ -415,7 +415,7 @@ export default function Home() {
                     <span style={{ fontWeight: 900, fontSize: '0.9rem', color: r.color }}>{r.lang}</span>
                     <span style={{ marginLeft: 'auto', fontSize: '0.7rem', fontWeight: 700, color: r.color, background: `${r.color}18`, padding: '0.15rem 0.5rem', borderRadius: '8px' }}>{r.count} svc</span>
                   </div>
-                  {r.services.map((s, i) => (<div key={i} style={{ fontSize: '0.78rem', color: '#475569', padding: '0.3rem 0', borderBottom: '1px solid rgba(0,0,0,0.04)', lineHeight: 1.5, display: 'flex', gap: '0.4rem' }}><span style={{ color: r.color, flexShrink: 0 }}>â€º</span>{s}</div>))}
+                  {r.services.map((s, i) => (<div key={i} style={{ fontSize: '0.78rem', color: '#475569', padding: '0.3rem 0', borderBottom: '1px solid rgba(0,0,0,0.04)', lineHeight: 1.5, display: 'flex', gap: '0.4rem' }}><span style={{ color: r.color, flexShrink: 0 }}>›</span>{s}</div>))}
                 </div>
               ))}
             </div>
