@@ -13,7 +13,7 @@ export async function scanCompliance(prId: string, repoName: string, diff: strin
   // Query nearest policies matching the diff content from CockroachDB using vector operators
   const policiesResult = await db.query(
     'SELECT rule_name, category, policy_description, keywords FROM vector_policies ORDER BY embedding <=> $1 LIMIT 3',
-    [diffVector]
+    [JSON.stringify(diffVector)]
   );
   const policies = policiesResult.rows;
 

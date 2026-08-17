@@ -23,6 +23,14 @@ Heimdall AI is a polyglot, AI-powered security orchestrator designed to intercep
 *   **Proactive & Reactive:** Combines reactive PR scanning with proactive, continuous API DAST fuzzing.
 *   **Polyglot Efficiency:** Uses the right language for the right job (Go for speed/concurrency, Python for AI/Data, TypeScript for Orchestration/UI).
 
+## 📸 Screenshots
+
+| Home | Audit Dashboard |
+|:---:|:---:|
+| ![Home](ss/home.png) | ![Audit Dashboard](ss/audit_dashboard.png) |
+| **API Registry** | **How it Works** |
+| ![API Registry](ss/api_registry.png) | ![How it Works](ss/how_it_works.png) |
+
 ## 🏗️ Architecture Overview
 
 The ecosystem consists of several interconnected components running simultaneously:
