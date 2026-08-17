@@ -69,9 +69,9 @@ setTimeout(() => {
 // Print Go instructions
 setTimeout(() => {
   console.log(`\n${YELLOW}[Go Worker]${RESET} To start the Go queue worker, open a separate terminal and run:`);
-  console.log(`${YELLOW}            go run services/go/worker.go${RESET}`);
+  console.log(`${YELLOW}            go run services/go/worker/main.go${RESET}`);
   console.log(`\n${YELLOW}[Go Monitor]${RESET} To start the API health monitor, open another terminal and run:`);
-  console.log(`${YELLOW}             go run services/go/api_monitor.go${RESET}\n`);
+  console.log(`${YELLOW}             go run services/go/monitor/main.go${RESET}\n`);
   console.log(`${GREEN}${BOLD}All core services started! Open http://localhost:3000${RESET}\n`);
 }, 5000);
 

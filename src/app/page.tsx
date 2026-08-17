@@ -458,7 +458,7 @@ export default function Home() {
                 <span style={{ color: '#94a3b8' }}># API Registry (port 5002)</span><br />
                 <span style={{ color: '#4ade80' }}>$</span> python services/python/api_registry.py<br /><br />
                 <span style={{ color: '#94a3b8' }}># Health Monitor (port 5003)</span><br />
-                <span style={{ color: '#4ade80' }}>$</span> go run services/go/api_monitor.go
+                <span style={{ color: '#4ade80' }}>$</span> go run services/go/monitor/main.go
               </div>
             </div>
           </div>
