@@ -48,7 +48,7 @@ func main() {
 	}
 }
 
-func processPendingQueue(db *sql.Model) {
+func processPendingQueue(db *sql.DB) {
 	// Query for PR rows with 'Pending' state
 	rows, err := db.Query("SELECT id, pr_number, repo_name, status, author, title FROM prs WHERE status = 'Pending' LIMIT 5")
 	if err != nil {
