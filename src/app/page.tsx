@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
@@ -210,15 +210,15 @@ export default function Home() {
                 <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 700 }}>Round Robin AI Triage</span>
               </div>
               <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1e293b', marginBottom: '0.85rem' }}>PR #412 - SQL Injection Finding</div>
-              <div className="rr-match-row auditor appear-1"><div className="rr-avatar" style={{ background: '#fdf2f2' }}>ðŸ”´</div><div className="rr-speech"><strong>Security Auditor</strong>Raw concat exposes injection vectors - must block.</div></div>
-              <div className="rr-match-row developer appear-2"><div className="rr-avatar" style={{ background: '#ebf9f3' }}>ðŸŸ¢</div><div className="rr-speech"><strong>Practical Developer</strong>Internal microservice - trusted API inputs, low risk.</div></div>
-              <div className="rr-match-row compliance appear-3"><div className="rr-avatar" style={{ background: '#ecf3fe' }}>ðŸ”µ</div><div className="rr-speech"><strong>Compliance Officer</strong>Policy mandates parameterized queries - no exceptions.</div></div>
+              <div className="rr-match-row auditor appear-1"><div className="rr-avatar" style={{ background: '#fdf2f2' }}>🔴</div><div className="rr-speech"><strong>Security Auditor</strong>Raw concat exposes injection vectors - must block.</div></div>
+              <div className="rr-match-row developer appear-2"><div className="rr-avatar" style={{ background: '#ebf9f3' }}>🟢</div><div className="rr-speech"><strong>Practical Developer</strong>Internal microservice - trusted API inputs, low risk.</div></div>
+              <div className="rr-match-row compliance appear-3"><div className="rr-avatar" style={{ background: '#ecf3fe' }}>🔵</div><div className="rr-speech"><strong>Compliance Officer</strong>Policy mandates parameterized queries - no exceptions.</div></div>
               <div style={{ flex: 1 }} />
               <div className="rr-winner-bar"><span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1e293b' }}>Verdict:</span><span className="rr-winner-badge" style={{ background: '#fdf2f2', color: '#c93b3b' }}>True Positive</span><span style={{ fontSize: '0.78rem', color: '#64748b', marginLeft: 'auto' }}>Patch dispatched</span></div>
               <div className="rr-score-row">
-                <div className="rr-score-chip">ðŸ”´ Auditor<br /><strong style={{ color: '#c93b3b' }}>2 wins</strong></div>
-                <div className="rr-score-chip">ðŸŸ¢ Dev<br /><strong style={{ color: '#94a3b8' }}>0 wins</strong></div>
-                <div className="rr-score-chip">ðŸ”µ Compliance<br /><strong style={{ color: '#2f69d3' }}>1 win</strong></div>
+                <div className="rr-score-chip">🔴 Auditor<br /><strong style={{ color: '#c93b3b' }}>2 wins</strong></div>
+                <div className="rr-score-chip">🟢 Dev<br /><strong style={{ color: '#94a3b8' }}>0 wins</strong></div>
+                <div className="rr-score-chip">🔵 Compliance<br /><strong style={{ color: '#2f69d3' }}>1 win</strong></div>
               </div>
             </div>
           </div>
@@ -246,7 +246,7 @@ export default function Home() {
               <div className="panel-header"><span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><GitPullRequest size={20} />PR Audit Logs</span><button onClick={fetchPrs} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }} disabled={loadingPrs}><RefreshCw size={16} className={loadingPrs ? 'animate-spin' : ''} /></button></div>
               {loadingPrs ? (<div className="empty-state"><RefreshCw size={32} style={{ animation: 'spin 1s linear infinite' }} /><p style={{ marginTop: '1rem' }}>Loading...</p></div>)
                 : prs.length === 0 ? (<div className="empty-state"><Shield size={48} style={{ color: '#cbd5e1' }} /><p>No PRs yet. Click Trigger Simulation.</p></div>)
-                  : (<div className="pr-list">{prs.map(pr => (<div key={pr.id} className={`pr-item ${selectedPr?.id === pr.id ? 'active' : ''}`} onClick={() => setSelectedPr(pr)}><div style={{ flex: 1, minWidth: 0, paddingRight: '1rem' }}><div className="pr-title" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{pr.title}</div><div className="pr-meta"><span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}><User size={12} />{pr.author}</span><span>â€¢</span><span>#{pr.pr_number}</span><span>â€¢</span><span>{pr.repo_name}</span></div></div><div>{getStatusBadge(pr.status)}</div></div>))}</div>)}
+                  : (<div className="pr-list">{prs.map(pr => (<div key={pr.id} className={`pr-item ${selectedPr?.id === pr.id ? 'active' : ''}`} onClick={() => setSelectedPr(pr)}><div style={{ flex: 1, minWidth: 0, paddingRight: '1rem' }}><div className="pr-title" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{pr.title}</div><div className="pr-meta"><span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}><User size={12} />{pr.author}</span><span>•</span><span>#{pr.pr_number}</span><span>•</span><span>{pr.repo_name}</span></div></div><div>{getStatusBadge(pr.status)}</div></div>))}</div>)}
             </div>
             <div className="panel-card clay-card">
               <div className="panel-header"><span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Terminal size={20} />Agent Execution Audit</span>{selectedPr && <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>ID: {(selectedPr.id || selectedPr.prId || '').substring(0, 8)}</span>}</div>
