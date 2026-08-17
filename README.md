@@ -15,6 +15,14 @@ Heimdall AI is a polyglot, AI-powered security orchestrator designed to intercep
 *   **LLM Agnostic Gateway:** Seamlessly swap between AWS Bedrock, OpenAI, Anthropic, or local Ollama models without modifying the core TypeScript agents.
 *   **Auto-Remediation:** Automatically generates `git diff` patches for True Positives and verifies them via a CI dry-run syntax check before proposing them to the developer.
 
+## ⭐ Pros of Heimdall AI
+
+*   **Near-Zero False Positives:** The Round Robin Multi-Model Debate ensures that findings are cross-examined by different AI personas, drastically reducing alert fatigue for developers.
+*   **Highly Scalable & Resilient:** Backed by CockroachDB Serverless, the platform can handle massive concurrency and globally distributed workloads without downtime.
+*   **Future-Proof AI:** The LLM Agnostic Gateway means you are never locked into a single AI provider. Swap models as better ones are released.
+*   **Proactive & Reactive:** Combines reactive PR scanning with proactive, continuous API DAST fuzzing.
+*   **Polyglot Efficiency:** Uses the right language for the right job (Go for speed/concurrency, Python for AI/Data, TypeScript for Orchestration/UI).
+
 ## 🏗️ Architecture Overview
 
 The ecosystem consists of several interconnected components running simultaneously:
